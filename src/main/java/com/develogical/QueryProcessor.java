@@ -1,5 +1,6 @@
 package com.develogical;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,28 @@ public class QueryProcessor {
             }
             return "" + total;
         }
+        else if (query.toLowerCase().startsWith("which of the following numbers are primes:")) {
+            String arguments = query.split(":")[1];
+            Pattern p = Pattern.compile(INT_PATTERN);
+            Matcher m = p.matcher(arguments);
+            ArrayList primes = new ArrayList<String>();
+            while (m.find()) {
+                int value = Integer.parseInt(m.group());
+                if (isPrime(value)) {
+                    primes.add(""+value);
+                }
+            }
+            return String.join(", ", primes);
+        }
         return "";
+    }
+
+    static boolean isPrime(int value) {
+        if (value <= 1) 
+            return false; 
+        for (int i = 2; i < value; i++) 
+            if (value % i == 0) 
+                return false; 
+        return true; 
     }
 }

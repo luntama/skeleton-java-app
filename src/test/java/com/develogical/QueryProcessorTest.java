@@ -37,6 +37,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void whichArePrimes() throws Exception{
+    assertThat(queryProcessor.process("which of the following numbers are primes: 107, 493"), containsString("107"));
+  }
+
+  @Test
   public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
     assertThat(queryProcessor.process("test"), is(""));
   }
