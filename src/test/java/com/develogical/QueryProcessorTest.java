@@ -22,6 +22,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void knowsWhatIsYourName() throws Exception {
+    assertThat(queryProcessor.process("what is your Name"), containsString("Luis"));
+  }
+
+  @Test
   public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
     assertThat(queryProcessor.process("test"), is(""));
   }
