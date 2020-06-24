@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class QueryProcessor {
 
     static final String PATTERN = "what is \\d+ plus \\d+";
+    static final String PATTERN2 = "what is \\d+ plus \\d+ multiplied by \\d+";
     static final String INT_PATTERN = "\\d+";
 
     public String process(String query) {
@@ -47,6 +48,20 @@ public class QueryProcessor {
                 }
             }
             return String.join(", ", primes);
+        }
+        //what is 15 plus 0 multiplied by 5
+        else if (Pattern.matches(PATTERN2, query.toLowerCase())) {
+            Pattern p = Pattern.compile(INT_PATTERN);
+            Matcher m = p.matcher(query.toLowerCase());
+            int total = 0;
+            int v1, v2, v3;
+            m.find();
+            v1 = Integer.parseInt(m.group());
+            m.find();
+            v2 = Integer.parseInt(m.group());
+            m.find();
+            v3 = Integer.parseInt(m.group());
+            return "" + (v1 + v2) * v3;
         }
         return "";
     }

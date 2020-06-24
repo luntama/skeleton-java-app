@@ -42,6 +42,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void operateOnThreeValues() throws Exception{
+    assertThat(queryProcessor.process("what is 15 plus 0 multiplied by 5"), containsString("75"));
+  }
+
+  @Test
   public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
     assertThat(queryProcessor.process("test"), is(""));
   }
