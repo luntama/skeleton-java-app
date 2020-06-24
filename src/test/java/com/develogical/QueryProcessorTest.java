@@ -32,6 +32,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void addNumbers() throws Exception{
+    assertThat(queryProcessor.process("what is 6 plus 2"), containsString("8"));
+  }
+
+  @Test
   public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
     assertThat(queryProcessor.process("test"), is(""));
   }

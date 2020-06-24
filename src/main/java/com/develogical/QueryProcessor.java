@@ -1,9 +1,13 @@
 package com.develogical;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class QueryProcessor {
 
-// which of the following numbers is the largest: 67, 299
+    static final String PATTERN = "what is \\d+ plus \\d+";
+    static final String INT_PATTERN = "\\d+";
+
     public String process(String query) {
         if (query.toLowerCase().contains("romeo and juliet")) {
             return "William Shakespeare";
@@ -20,6 +24,15 @@ public class QueryProcessor {
             catch(Exception e) {
                 return "";
             }
+        }
+        else if (Pattern.matches(PATTERN, query.toLowerCase())) {
+            Pattern p = Pattern.compile(INT_PATTERN);
+            Matcher m = p.matcher(query.toLowerCase());
+            int total = 0;
+            while (m.find()) {
+                total += Integer.parseInt(m.group());
+            }
+            return "" + total;
         }
         return "";
     }
