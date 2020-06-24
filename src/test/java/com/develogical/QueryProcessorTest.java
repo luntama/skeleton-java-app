@@ -10,6 +10,7 @@ public class QueryProcessorTest {
 
   QueryProcessor queryProcessor = new QueryProcessor();
 
+
   @Test
   public void knowsWhoWroteRomeoAndJuliet() throws Exception {
     assertThat(queryProcessor.process("Who wrote Romeo And Juliet"), containsString("Shakespeare"));
