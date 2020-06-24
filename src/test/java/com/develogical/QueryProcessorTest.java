@@ -27,6 +27,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void maxNumber() throws Exception {
+    assertThat(queryProcessor.process("which of the following numbers is the largest: 67, 299"), containsString("299"));
+  }
+
+  @Test
   public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
     assertThat(queryProcessor.process("test"), is(""));
   }
